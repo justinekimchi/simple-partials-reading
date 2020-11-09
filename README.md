@@ -69,12 +69,14 @@ Second, let's remove the repeated code in `app/views/posts/edit.html.erb`. The f
 <%= form_tag post_path(@post), method: "put" do %>
 <% end %>
 ```
+
 Note that we left in the non-duplicated code. Now, let's also remove the duplicated code in the `app/views/posts/new.html.erb` file. The file should look like this:
 
 ```erb
 <%= form_tag posts_path do %>
 <% end %>
 ```
+
 We left the code that is unique to each view and removed the duplicated code inside the `form_tag` blocks.
 
 So, now what? It looks like we are missing a bunch of code in our `posts/new` and `posts/edit` files. Not to worry –– that's where our partial comes in handy.
@@ -123,7 +125,7 @@ A couple of things to note:
 
 2. We could have named the partial whatever we wanted to. The only requirements are that it start with an underscore and that references to the partial are made without the underscore. But, just like method names, it's good to make the names of our partials as commonsensical as possible.
 
-3. We were able to reference the partial by just calling `<%= render 'form' %>`.  Notice that we didn't specify the folder that the partial lives in, such as `<%= render 'posts/form' %>`. The reason we didn't need this (even though it would have worked if we had included it) is that both the `posts/new` and `posts/edit` files are referencing a partial housed in the same folder in which they reside, `app/views/posts`. When referencing a partial from a different folder, we must include the folder name as well (e.g., `<%= render 'posts/form' %>` as opposed to `<%= render 'form' %>`).
+3. We were able to reference the partial by just calling `<%= render 'form' %>`. Notice that we didn't specify the folder that the partial lives in, such as `<%= render 'posts/form' %>`. The reason we didn't need this (even though it would have worked if we had included it) is that both the `posts/new` and `posts/edit` files are referencing a partial housed in the same folder in which they reside, `app/views/posts`. When referencing a partial from a different folder, we must include the folder name as well (e.g., `<%= render 'posts/form' %>` as opposed to `<%= render 'form' %>`).
 
 ## Rendering a partial from a different folder
 
@@ -203,8 +205,8 @@ Change the `posts#show` action in the controller to look like the following:
 # app/controllers/posts_controller.rb
 
 def show
-  @post = Post.find(params[:id])
-  @author = @post.author
+    @post = Post.find(params[:id])
+    @author = @post.author
 end
 ```
 
